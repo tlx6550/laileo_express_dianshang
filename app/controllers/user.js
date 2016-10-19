@@ -65,3 +65,12 @@ exports.signin = function(req,res){
     })
   })
 }
+
+//加载用户名中间件
+exports.signinRequired = function(req,res,next){
+  var user = req.session.user
+  if(!user){
+    return res.redirect('/')
+  }
+  next()
+}

@@ -1,0 +1,25 @@
+extends ../layout
+
+block content
+    .container
+        .row
+            form.form-horizontal(method="post",action="/admin/commodity/new",enctype="multipart/form-data")
+                .form-group
+                    label.col-sm.control-label(for="inputName") 商品名称
+                    .col-sm-10
+                        input#inputName.form-control(type="text",name="commodity[name]")
+                //- if commodity._id
+                //-     input(type="hidden", name="commodity[_id]",)
+                .form-group
+                    label.col-sm.control-label(for="inputPrice") 商品价格
+                    .col-sm-10
+                        input#inputPrice.form-control(type="text",name="commodity[price]" )
+                .form-group
+                    label.col-sm.control-label(for="inputImgScr") 商品图片
+                    .col-sm-10
+                        input#inputImgScr.form-control(type="text",name="commodity[imgScr]")
+                .form-group
+                    label.col-sm-2.control-label(for="uploadImgScr") 商品图片上传
+                    .col-sm-10
+                        input#uploadImgScr(type="file", name="uploadImgScr")
+                button.btn.btn-primary(type="submit") 录入

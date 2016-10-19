@@ -8,12 +8,18 @@ module.exports = function(grunt){
         }
       },
       js: {
-        files: ['public/js/**', 'models/**/*.js', 'schemas/**/*.js'],
-        //tasks: ['jshint'],
+        files: ['public/js/**','stylesheets/**/*.css', 'models/**/*.js', 'schemas/**/*.js'],
+        //tasks: ['jshint'],*
         options: {
           livereload: true
         }
       },
+      css: {
+        files: ['stylesheets/**/*.css'],
+        options: {
+          livereload: true
+        }
+      }
     },
 //监听app.js
     nodemon: {

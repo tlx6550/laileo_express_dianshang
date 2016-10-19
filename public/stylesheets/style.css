@@ -6,3 +6,11 @@ body {
 a {
   color: #00B7FF;
 }
+.panel-heading{
+    position: relative;
+}
+#mygroup{
+    position:absolute;
+    top: 1px;
+    right: 5px;
+}

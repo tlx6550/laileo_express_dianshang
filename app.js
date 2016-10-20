@@ -8,7 +8,7 @@ var mongoose = require('mongoose');
 //connect-mongo 第三方中间件建立客户端登录状态保存在服务端
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
-// app.locals.moment = require('moment');
+
 // //本地开发环境 代码格式
 // if ('development'=== app.get('env')) {
 //   app.set('showStackError',true)
@@ -38,6 +38,7 @@ mongoose.connection.on('error', function(err){
 mongoose.connection.on('disconnected', function(){
     console.log('Connection disconnected');
 });
+app.locals.moment = require('moment');
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
@@ -45,6 +46,7 @@ app.use(logger('dev'));
 app.use(bodyParser.urlencoded({ extended: true  }));
 //保存登录状态信息到数据库
 app.use(cookieParser())
+
 app.use(require('connect-multiparty')());
 app.use(session({
     secret: 'dianshang',

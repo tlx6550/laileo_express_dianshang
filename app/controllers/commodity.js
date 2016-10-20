@@ -2,16 +2,23 @@ var Commodity = require('../models/commodity');
 var fs = require('fs')
 var path = require('path')
 var _ = require('underscore');
-
+//通过model  Commodity 来操作数据库
 exports.new = function(req,res){
-    Commodity.find({},function(err,commoditiy){
+    // Commodity.find({},function(err,commoditiy){
+    //     res.render('admincommodity',{
+    //         title:'商品录入',
+    //         commoditiy:{}
+    //     })
+    // })
+
         res.render('admincommodity',{
             title:'商品录入',
-            commoditiy:commoditiy
+            commodity:{}
         })
-    })
-}
 
+}
+//save命令可以更新或插入一个新文档，
+//与update命令不同的是，save只能对一个文档进行操作
 exports.save = function(req, res) {
     if(!req.body) return res.sendStatus(400);
     var id = req.body.commodity._id;
@@ -94,3 +101,42 @@ exports.list = function(req,res){
     });
   });
 };
+// 加载商品list page
+exports.commoditylist = function(req,res){
+  Commodity.fetch(function(err,commodities){
+    if(err){
+      console.log(err);
+    }
+    res.render('admincommoditylist',{
+      title : '商品列表',
+      commodities: commodities,
+    });
+  });
+};
+
+exports.update = function(req,res){
+    var id = req.params.id;
+    if (id) {
+       Commodity.findById(id,function(err,commodity){
+        res.render('admincommodity',{
+            title:'商品更新',
+            commodity:commodity
+        })
+       })
+    }
+}
+
+exports.del = function(req,res){
+  var id = req.query.id;
+  if(id) {
+    Commodity.remove({_id: id}, function(err) {
+      if( err ) {
+        console.log(err);
+      }else{
+        res.json({success: 1});
+      }
+    });
+  }
+
+}
+

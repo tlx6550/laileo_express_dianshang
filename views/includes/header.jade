@@ -7,6 +7,12 @@
                 span 欢迎您，#{user.name}
                 span &nbsp;|&nbsp;
                 a.navbar-link(href="/logout") 退出
+            div.btn-group.pull-left.indexmygroup
+                        a.btn.btn-default(role="button",href="/commoditylist") 商品列表
+                        a.btn.btn-default(role="button",href="/admin/commodity/list") 查看编辑列表
+                        a.btn.btn-default(role="button",href="/admin/commodity/new") 添加商品
+                        a.btn.btn-default(role="button",href="") 购物车
+                        a.btn.btn-default.btn-warning(role="button",href="/logout") 退出
         else
             p.navbar-text.navbar-right
                 a.navbar-link(href="#",data-toggle="modal",data-target="#signupModal") 注册

@@ -1,19 +1,37 @@
-$( function register() {
-   //通过serialize()方法进行序列化表单值，创建文本字符串。
-   var data = $("form").serialize();
-   //例如："username=张三&password=12345"
-   $.ajax({
-       url:'/register',
-       type:'POST',
-       data:data,
-       success:function(data,status){
-           if(status == 'success'){
-               location.href='register';
-           }
-       },
-       error:function(res,err){
-           location.href='register';
-       }
-   });
-}
-)
+$(function() {
+  $('.del').click(function(e){
+    var target = $(e.target);
+    var id = target.data('id');
+    var tr = $('.item-id-'+id);
+    $.ajax({
+      type:'DELETE',
+      url:'/admin/commodity/list?id='+id
+    }).done(function(results){
+      if (results.success ===1) {
+        if (tr.length > 0) {
+          tr.remove();
+        }
+      }
+    })
+  })
+})
+
+//两者写法一样，前者是自执行 无线调用；后者先定义函数名 ，在调用
+// function del() {
+//   $('.del').click(function(e){
+//     var target = $(e.target);
+//     var id = target.data('id');
+//     var tr = $('.item-id-'+id);
+//     $.ajax({
+//       type:'DELETE',
+//       url:'/admin/commodity/list?id='+id
+//     }).done(function(results){
+//       if (results.success ===1) {
+//         if (tr.length > 0) {
+//           tr.remove();
+//         }
+//       }
+//     })
+//   })
+// }
+// del();

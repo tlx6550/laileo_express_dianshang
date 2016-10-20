@@ -7,9 +7,9 @@ block content
                 div.panel-heading
                     h3.panel-title 商品展示页
                     div.btn-group.pull-right#mygroup
-                        button.btn.btn-default 添加商品
-                        button.btn.btn-default 购物车
-                        button.btn.btn-default.btn-warning 退出
+                        a.btn.btn-default(role="button",href="/admin/commodity/new") 添加商品
+                        a.btn.btn-default(role="button",href="") 购物车
+                        a.btn.btn-default.btn-warning(role="button",href="/logout") 退出
                 div.panel-body
                     each item in commodities
                         div.col-md-4
@@ -20,4 +20,5 @@ block content
                                 strong 价格¥
                                 span.com-pric #{item.price}
                                 p: a.btn.btn-primary(href="/commodity/#{item._id}",role="button") 加入购物车
+    script(src="/javascripts/admin.js")
  
